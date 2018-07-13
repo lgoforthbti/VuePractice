@@ -3,6 +3,8 @@
         <h1>Login</h1>
         <input type="text" name="username" v-model="input.username" placeholder="Username">
         <input type="password" name="password" v-model="input.password" placeholder="Password">
+        <br>
+        <br>
         <button type="button" v-on:click="login()">Login</button>
         <button type="button" v-on:click="cancel()">Cancel</button>
     </div>

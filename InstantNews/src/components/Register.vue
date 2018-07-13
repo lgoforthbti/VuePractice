@@ -6,6 +6,8 @@
         <input type="text" name="email" v-model="input.Email" placeholder="Email"/>
         <input type="text" name="username" v-model="input.Username" placeholder="Username"/>
         <input type="password" name="password" v-model="input.Password" placeholder="Password"/>
+        <br>
+        <br>
         <button type="button" v-on:click="register()">Register</button>
         <button type="button" v-on:click="cancel()">Cancel</button>
     </div>
@@ -35,14 +37,16 @@ export default {
         this.input.Email != ""
       ) {
         let u = {
-          // this isn't right----->Id: this.$parent.userList[userList.length]
+          // this probably isn't right----->Id: this.$parent.userList[(userList.length) - 1].Id ++
           FName: this.input.fname,
           LName: this.input.lname,
           Email: this.input.email,
           Username: this.input.username,
           Password: this.input.password
         };
+        console.log(u)
         this.$parent.userList.pop(u);
+        console.log(this.$parent.userList)
         this.$emit("authenticated", true);
         this.$router.replace({ name: "Admin" });
       } else {
