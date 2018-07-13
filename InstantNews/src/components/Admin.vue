@@ -18,6 +18,7 @@
             </tr> 
           </tbody>
         </table>
+        <router-view @authenticated="setAuthenticated"/>
     </div>
 </template>
 
@@ -26,30 +27,47 @@ export default {
   name: "Admin",
   data() {
     return {
+      authenticated: false,
       users: [
         {
           Id: 1,      
           Username: "Test1",
           FName: "John",
           LName: "Smith",
-          Email: "test1@test.com"
+          Email: "test1@test.com",
+          Password: "test"
         },
         {
           Id: 2,
           Username: "Test2",
           FName: "Jane",
           LName: "Doe",
-          Email: "test2@test.com"
+          Email: "test2@test.com",
+          Password: "test"
         },
         {
           Id: 3,
           Username: "Test3",
           FName: "Shirley",
           LName: "Temple",
-          Email: "test3@test.com"
+          Email: "test3@test.com",
+          Password: "test"
         }
       ]
     };
+  },
+  mounted() {
+    if(!this.authenticated) {
+        this.$router.replace({ name: "Login" });
+    }
+  },
+  methods: {
+    setAuthenticated(status) {
+        this.authenticated = status;
+    },
+    logout() {
+        this.authenticated = false;
+    }
   }
 };
 </script>
