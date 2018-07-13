@@ -22,9 +22,11 @@ export default {
   methods: {
     login() {
       if (this.input.username != "" && this.input.password != "") {
-        if (this.input.username = this.$parent.users.username &&
+        if (
+          (this.input.username =
+            this.$parent.users.username &&
             this.input.password == this.$parent.mockAccount.password)
-        {
+        ) {
           this.$emit("authenticated", true);
           this.$router.replace({ name: "Admin" });
         } else {
@@ -33,10 +35,10 @@ export default {
       } else {
         console.log("A username and password must be present");
       }
+    },
+    cancel() {
+      this.$router.replace({ name: "HelloWorld" });
     }
-  },
-  cancel() {
-    this.$router.replace({ name: "HelloWorld" });
   }
 };
 </script>
