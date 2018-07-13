@@ -22,14 +22,11 @@ export default {
   methods: {
     login() {
       if (this.input.username != "" && this.input.password != "") {
-        if (
-          (this.input.username =
-            this.$parent.users.username &&
-            this.input.password == this.$parent.mockAccount.password)
-        ) {
+        if (this.input.username == this.$parent.mockAccount.Username && this.input.password == this.$parent.mockAccount.Password)
+         {
           this.$emit("authenticated", true);
           this.$router.replace({ name: "Admin" });
-        } else {
+         } else {
           console.log("The username and / or password is incorrect");
         }
       } else {
