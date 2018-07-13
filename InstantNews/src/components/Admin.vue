@@ -1,9 +1,23 @@
 <template>
     <div class="admin">
-        <ol>
-            <li v-for="u in users" v-bind:key="u.Id">{{u.Username, u.FName, u.LName, u.Email}}</li>
-        </ol>
-        <table>{{ users }}</table>
+        <table>
+          <thead>
+            <tr>
+              <th>UserID</th>
+              <th>Username</th>
+              <th>First Name</th>
+              <th>Last Name</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="u in users" v-bind:key="u.Id">
+              <td>{{u.Id}}</td>
+              <td>{{u.Username}}</td> 
+              <td>{{u.FName}}</td> 
+              <td>{{u.LName}}</td>
+            </tr> 
+          </tbody>
+        </table>
     </div>
 </template>
 
@@ -16,23 +30,23 @@ export default {
         {
           Id: 1,      
           Username: "Test1",
-          FName: "Testfn",
-          LName: "Testln",
+          FName: "John",
+          LName: "Smith",
           Email: "test1@test.com"
         },
         {
           Id: 2,
           Username: "Test2",
-          FName: "Testfn",
-          LName: "Testln",
+          FName: "Jane",
+          LName: "Doe",
           Email: "test2@test.com"
         },
         {
           Id: 3,
           Username: "Test3",
-          FName: "Testfn",
-          LName: "Testln",
-          Email: "tes3t@test.com"
+          FName: "Shirley",
+          LName: "Temple",
+          Email: "test3@test.com"
         }
       ]
     };
