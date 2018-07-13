@@ -1,12 +1,12 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import HelloWorld from '@/components/HelloWorld'
-import Login from '@components/Login'
-import Register from '@components/Register'
-import ResetPw from '@components/ResetPw'
-import Admin from '@components/Admin'
-import VNews from '@components/VNews'
-import VWeather from '@components/VWeather'
+import Login from '@/components/Login'
+import Register from '@/components/Register'
+import ResetPw from '@/components/ResetPw'
+import Admin from '@/components/Admin'
+import VNews from '@/components/VNews'
+import VWeather from '@/components/VWeather'
 
 Vue.use(Router)
 

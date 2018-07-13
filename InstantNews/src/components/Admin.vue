@@ -1,7 +1,7 @@
 <template>
     <div class="admin">
-        <ol v-for="u in users" v-bind:key="u.Id">
-            <li>{{u.Username, u.FName, u.LName, u.Email}}</li>
+        <ol>
+            <li v-for="u in users" v-bind:key="u.Id">{{u.Username, u.FName, u.LName, u.Email}}</li>
         </ol>
         <table>{{ users }}</table>
     </div>
