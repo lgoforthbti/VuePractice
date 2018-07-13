@@ -18,7 +18,7 @@
             </tr> 
           </tbody>
         </table>
-        <router-view @authenticated="setAuthenticated"/>
+        <!-- <router-view @authenticated="setAuthenticated"/> -->
     </div>
 </template>
 
@@ -27,7 +27,7 @@ export default {
   name: "Admin",
   data() {
     return {
-      authenticated: false,
+      // authenticated: false,
       users: [
         {
           Id: 1,      
@@ -56,18 +56,15 @@ export default {
       ]
     };
   },
-  mounted() {
-    if(!this.authenticated) {
-        this.$router.replace({ name: "Login" });
-    }
-  },
-  methods: {
-    setAuthenticated(status) {
-        this.authenticated = status;
-    },
-    logout() {
-        this.authenticated = false;
-    }
-  }
+  // mounted() {
+  //   if(!this.authenticated) {
+  //       this.$router.replace({ name: "Login" });
+  //   }
+  // },
+  // methods: {
+  //   setAuthenticated(status) {
+  //       this.authenticated = status;
+  //   }
+  // }
 };
 </script>
