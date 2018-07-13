@@ -22,7 +22,7 @@ export default {
   methods: {
     login() {
       if (this.input.username != "" && this.input.password != "") {
-        if (this.input.username == this.$parent.mockAccount.Username && this.input.password == this.$parent.mockAccount.Password)
+        if (this.input.username == this.$parent.mockAdmin.Username && this.input.password == this.$parent.mockAdmin.Password)
          {
           this.$emit("authenticated", true);
           this.$router.replace({ name: "Admin" });

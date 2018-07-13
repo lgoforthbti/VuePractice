@@ -7,6 +7,7 @@
     <router-link to="/admin">Admin</router-link>
     <router-link to="/vnews">News</router-link>
     <router-link to="/vweather">Weather</router-link>
+    <hr/>
     <router-view @authenticated="setAuthenticated"/>
   </div>
 </template>
@@ -17,14 +18,24 @@ export default {
   data() {
     return {
       authenticated: false,
-      mockAccount: {
+      mockAdmin: {
           Id: 1,      
           Username: "Test1",
           FName: "John",
           LName: "Smith",
           Email: "test1@test.com",
           Password: "test"
-      }
+      },
+      userList: [
+        {
+          Id: 1,      
+          Username: "Test1",
+          FName: "John",
+          LName: "Smith",
+          Email: "test1@test.com",
+          Password: "test"
+        },
+      ]
     };
   },
   mounted() {
