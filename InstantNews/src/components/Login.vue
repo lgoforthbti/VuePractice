@@ -13,6 +13,9 @@
 <script>
 export default {
   name: "Login",
+    props: {
+    users: Array
+  },
   data() {
     return {
       users: this.$parent.userList,

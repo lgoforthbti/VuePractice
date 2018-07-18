@@ -25,6 +25,9 @@
 <script>
 export default {
   name: "Admin",
+    props: {
+    users: Array
+  },
   data() {
     return {
       // authenticated: false,

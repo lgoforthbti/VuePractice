@@ -16,9 +16,11 @@
 <script>
 export default {
   name: "Register",
+  props: {
+    users: Array
+  },
   data() {
     return {
-      users: this.$parent.userList,
       input: {
         FName: "",
         LName: "",
