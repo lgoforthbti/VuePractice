@@ -61,7 +61,7 @@ export default {
               this.$router.replace({ name: "Admin" });
             } else {
               
-              this.$router.replace({ name: "HelloWorld" });
+              this.$router.replace({ name: "Homepage" });
             }
           } 
         else 
@@ -74,7 +74,7 @@ export default {
       }
     },
     cancel() {
-      this.$router.replace({ name: "HelloWorld" });
+      this.$router.replace({ name: "Homepage" });
     }
   }
 };

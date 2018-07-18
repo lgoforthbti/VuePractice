@@ -8,7 +8,7 @@
     <router-link to="/vnews">News</router-link>
     <router-link to="/vweather">Weather</router-link>
     <hr/>
-    <router-view/>
+
 </div>
 </template>
 

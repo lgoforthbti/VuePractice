@@ -1,5 +1,6 @@
 <template>
     <div class="resetpw">
+        <h1>Reset Password</h1>
         <input type='text' name="currentpw" v-model="input.currentpw" placeholder="Current Password">
         <br>
         <br>

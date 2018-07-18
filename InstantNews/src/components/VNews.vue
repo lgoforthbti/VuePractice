@@ -20,7 +20,7 @@ export default {
   },
   methods: {
     cancel() {
-      this.$router.replace({ name: "HelloWorld" });
+      this.$router.replace({ name: "Homepage" });
     }
   }
 };
