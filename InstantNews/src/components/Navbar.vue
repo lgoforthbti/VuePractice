@@ -1,6 +1,6 @@
 <template>
 <div class='navbar'>
-    <router-link :to="{ name: 'HelloWorld'}">Home</router-link>
+    <router-link :to="{ name: 'Homepage'}">Home</router-link>
     <router-link to="/login">Login</router-link>
     <router-link to="/register">Register</router-link>
     <router-link to="/resetpw">Reset Password</router-link>
