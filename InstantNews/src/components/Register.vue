@@ -18,12 +18,14 @@ export default {
   name: "Register",
   data() {
     return {
+      users: this.$parent.userList,
       input: {
         FName: "",
         LName: "",
         Email: "",
         Username: "",
-        Password: ""
+        Password: "",
+        isAdmin: false
       }
     };
   },
@@ -37,21 +39,22 @@ export default {
         this.input.Email != ""
       ) {
           let u = {
+            Id: "",
             FName: "",
             LName: "",
             Email: "",
             Username: "",
-            Password: ""
+            Password: "",
+            isAdmin: false
           }
-          // this probably isn't right----->Id: this.$parent.userList[(userList.length) - 1].Id ++
+          u.Id = this.users[(users.length) - 1].Id ++;
           u.FName = this.input.FName;
           u.LName = this.input.LName;
           u.Email = this.input.Email;
           u.Username = this.input.Username;
           u.Password = this.input.Password;
         console.log(u)
-        this.$parent.userList.pop(u);
-        console.log(this.$parent.userList)
+        this.users.push(u);
         this.$emit("authenticated", true);
         this.$router.replace({ name: "Admin" });
       } else {

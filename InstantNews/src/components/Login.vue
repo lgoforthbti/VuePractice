@@ -15,6 +15,7 @@ export default {
   name: "Login",
   data() {
     return {
+      users: this.$parent.userList,
       input: {
         username: "",
         password: ""
@@ -22,16 +23,53 @@ export default {
     };
   },
   methods: {
-    login() {
-      if (this.input.username != "" && this.input.password != "") {
-        if (this.input.username == this.$parent.mockAdmin.Username && this.input.password == this.$parent.mockAdmin.Password)
-         {
-          this.$emit("authenticated", true);
-          this.$router.replace({ name: "Admin" });
-         } else {
-          console.log("The username and / or password is incorrect");
+    userExists() {
+      for(let i = 0; i < this.users.length; i++){
+        if(this.input.username == this.users[i].Username && this.input.password == this.users[i].Password) {
+          console.log(i)
+          console.log("userExists = true")
+          return true
+        } else {
+          console.log(i)
+          console.log("userExists = false")
+          return false
         }
-      } else {
+      }
+    },
+    isAdmin() {
+      for(let i =0; i < this.$parent.userList.length; i++){
+        if(this.input.username == this.users[i].Username && this.input.password == this.users[i].Password) {
+          if(this.$parent.userList[i].isAdmin){
+            console.log("isAdmin = true")
+            return true
+          } else {
+            console.log("isAdmin = false")
+            return false
+          }
+        }
+      }
+    },
+    login() {
+      if (this.input.username != "" && this.input.password != "") 
+      {
+        console.log("check if user exists")
+        if (this.userExists())
+          {
+            console.log("if user does exist then check is admin")
+            if(this.isAdmin()){
+              
+              this.$router.replace({ name: "Admin" });
+            } else {
+              
+              this.$router.replace({ name: "HelloWorld" });
+            }
+          } 
+        else 
+          {
+            console.log("The username and / or password is incorrect");
+          }
+      } 
+        else {
         console.log("A username and password must be present");
       }
     },

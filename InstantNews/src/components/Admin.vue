@@ -28,32 +28,7 @@ export default {
   data() {
     return {
       // authenticated: false,
-      users: [
-        {
-          Id: 1,      
-          Username: "Test1",
-          FName: "John",
-          LName: "Smith",
-          Email: "test1@test.com",
-          Password: "test"
-        },
-        {
-          Id: 2,
-          Username: "Test2",
-          FName: "Jane",
-          LName: "Doe",
-          Email: "test2@test.com",
-          Password: "test"
-        },
-        {
-          Id: 3,
-          Username: "Test3",
-          FName: "Shirley",
-          LName: "Temple",
-          Email: "test3@test.com",
-          Password: "test"
-        }
-      ]
+      users: this.$parent.userList
     };
   },
   // mounted() {
