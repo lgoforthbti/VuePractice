@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import HelloWorld from '@/components/HelloWorld'
+import Homepage from '@/components/Homepage'
 import Login from '@/components/Login'
 import Register from '@/components/Register'
 import ResetPw from '@/components/ResetPw'
@@ -14,8 +14,8 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'HelloWorld',
-      component: HelloWorld
+      name: 'Homepage',
+      component: Homepage
     },
     {
       path: '/login',
