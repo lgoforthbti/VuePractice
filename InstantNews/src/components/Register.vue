@@ -8,14 +8,16 @@
         <input type="password" name="password" v-model="input.Password" placeholder="Password"/>
         <br>
         <br>
-        <button type="button" v-on:click="register()">Register</button>
+        <button type="button" @click="register()">Register</button>
         <button type="button" v-on:click="cancel()">Cancel</button>
     </div>
 </template>
 
 <script>
+import { EventBus } from "../event-bus.js"
 export default {
   name: "Register",
+  authenticated: false,
   props: {
     users: Array
   },
@@ -41,7 +43,7 @@ export default {
         this.input.Email != ""
       ) {
           let u = {
-            Id: "",
+            Id: 0,
             FName: "",
             LName: "",
             Email: "",
@@ -49,14 +51,13 @@ export default {
             Password: "",
             isAdmin: false
           }
-          u.Id = this.users[(users.length) - 1].Id ++;
+          //u.Id = this.users[(users.length) - 1].Id ++;
           u.FName = this.input.FName;
           u.LName = this.input.LName;
           u.Email = this.input.Email;
           u.Username = this.input.Username;
           u.Password = this.input.Password;
-        console.log(u)
-        this.users.push(u);
+        EventBus.$emit('registerUser', u);
         this.$emit("authenticated", true);
         this.$router.replace({ name: "Admin" });
       } else {

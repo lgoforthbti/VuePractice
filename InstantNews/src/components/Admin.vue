@@ -10,7 +10,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr v-for="u in users" v-bind:key="u.Id">
+            <tr v-for="u in listUsers" v-bind:key="u.Id">
               <td>{{u.Id}}</td>
               <td>{{u.Username}}</td> 
               <td>{{u.FName}}</td> 
@@ -25,15 +25,13 @@
 <script>
 export default {
   name: "Admin",
-    props: {
-    users: Array
-  },
-  data() {
-    return {
-      // authenticated: false,
-      users: this.$parent.userList
-    };
-  },
+  props: [ 'listUsers' ],
+  // data() {
+  //   return {
+  //     // authenticated: false,
+  //     listUsers: this.listUsers
+  //   };
+  // },
   // mounted() {
   //   if(!this.authenticated) {
   //       this.$router.replace({ name: "Login" });

@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <Navbar></Navbar>
-    <router-view/>
+    <router-view :userList="listUsers"/>
     <Footer></Footer>
   </div>
 </template>
@@ -9,6 +9,8 @@
 <script>
 import Navbar from "./components/Navbar"
 import Footer from "./components/Footer"
+import { EventBus } from "./event-bus.js"
+
 export default {
   name: "App",
   data() {
@@ -61,7 +63,40 @@ export default {
   },
   components: {
     "Navbar": Navbar,
-    "Footer": Footer
+    "Footer": Footer,
+    // "Register": Register,
+    // "Admin": Admin
+  },
+  mounted() {  
+    EventBus.$on('registerUser', u => {
+       let lastID = (this.userList[(this.userList.length) - 1].Id);
+       u.Id = ++lastID;
+      this.userList.push(u);
+  });
+    // EventBus.$on('loginUser', u => {
+    //   if (this.input.username != "" && this.input.password != "") 
+    //   {
+    //     console.log("check if user exists")
+    //     if (this.userExists())
+    //       {
+    //         console.log("if user does exist then check is admin")
+    //         if(this.isAdmin()){
+              
+    //           this.$router.replace({ name: "Admin" });
+    //         } else {
+              
+    //           this.$router.replace({ name: "Homepage" });
+    //         }
+    //       } 
+    //     else 
+    //       {
+    //         console.log("The username and / or password is incorrect");
+    //       }
+    //   } 
+    //     else {
+    //     console.log("A username and password must be present");
+    //   }
+    // })
   }
 };
 </script>

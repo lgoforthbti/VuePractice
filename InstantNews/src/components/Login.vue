@@ -52,30 +52,11 @@ export default {
         }
       }
     },
-    login() {
-      if (this.input.username != "" && this.input.password != "") 
-      {
-        console.log("check if user exists")
-        if (this.userExists())
-          {
-            console.log("if user does exist then check is admin")
-            if(this.isAdmin()){
-              
-              this.$router.replace({ name: "Admin" });
-            } else {
-              
-              this.$router.replace({ name: "Homepage" });
-            }
-          } 
-        else 
-          {
-            console.log("The username and / or password is incorrect");
-          }
-      } 
-        else {
-        console.log("A username and password must be present");
-      }
-    },
+    // login() {
+    //     let u = {}
+    //     u.username = this.input.username,
+    //     u.password = this.input.password
+    // },
     cancel() {
       this.$router.replace({ name: "Homepage" });
     }
