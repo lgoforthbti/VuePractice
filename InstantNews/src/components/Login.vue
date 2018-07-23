@@ -5,20 +5,18 @@
         <input type="password" name="password" v-model="input.password" placeholder="Password">
         <br>
         <br>
-        <button type="button" v-on:click="login()">Login</button>
-        <button type="button" v-on:click="cancel()">Cancel</button>
+        <button type="button" @click.stop="login">Login</button>
+        <button type="button" @click="cancel()">Cancel</button>
     </div>
 </template>
 
 <script>
+import { EventBus } from '../event-bus.js';
 export default {
   name: "Login",
-    props: {
-    users: Array
-  },
+  props: ['users'],
   data() {
     return {
-      users: this.$parent.userList,
       input: {
         username: "",
         password: ""
@@ -26,37 +24,26 @@ export default {
     };
   },
   methods: {
-    userExists() {
-      for(let i = 0; i < this.users.length; i++){
-        if(this.input.username == this.users[i].Username && this.input.password == this.users[i].Password) {
-          console.log(i)
-          console.log("userExists = true")
-          return true
-        } else {
-          console.log(i)
-          console.log("userExists = false")
-          return false
-        }
-      }
-    },
-    isAdmin() {
-      for(let i =0; i < this.$parent.userList.length; i++){
-        if(this.input.username == this.users[i].Username && this.input.password == this.users[i].Password) {
-          if(this.$parent.userList[i].isAdmin){
-            console.log("isAdmin = true")
-            return true
+    login() {
+      if (this.input.username != "" && this.input.password != "") {
+        for (let i = 0; i < this.users.length; i++) {
+          if (
+            this.input.username == this.users[i].Username &&
+            this.input.password == this.users[i].Password
+          ) {
+            if (this.users[i].isAdmin) {
+              this.$router.replace({ name: "Admin" });
+            } else {
+              this.$router.replace({ name: "Homepage" });
+            }
           } else {
-            console.log("isAdmin = false")
-            return false
+            console.log("The username and / or password is incorrect");
           }
         }
+      } else {
+        console.log("A username and password must be present");
       }
     },
-    // login() {
-    //     let u = {}
-    //     u.username = this.input.username,
-    //     u.password = this.input.password
-    // },
     cancel() {
       this.$router.replace({ name: "Homepage" });
     }

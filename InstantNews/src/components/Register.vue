@@ -18,9 +18,6 @@ import { EventBus } from "../event-bus.js"
 export default {
   name: "Register",
   authenticated: false,
-  props: {
-    users: Array
-  },
   data() {
     return {
       input: {

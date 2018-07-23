@@ -1,15 +1,15 @@
 <template>
   <div id="app">
     <Navbar></Navbar>
-    <router-view :listUsers="userList"/>
+    <router-view :listUsers="userList" :users="userList"/>
     <Footer></Footer>
   </div>
 </template>
 
 <script>
-import Navbar from "./components/Navbar"
-import Footer from "./components/Footer"
-import { EventBus } from "./event-bus.js"
+import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
+import { EventBus } from "./event-bus.js";
 
 export default {
   name: "App",
@@ -18,7 +18,7 @@ export default {
       authenticated: false,
       userList: [
         {
-          Id: 1,      
+          Id: 1,
           Username: "Test1",
           FName: "John",
           LName: "Smith",
@@ -62,41 +62,17 @@ export default {
     }
   },
   components: {
-    "Navbar": Navbar,
-    "Footer": Footer,
+    Navbar: Navbar,
+    Footer: Footer
     // "Register": Register,
     // "Admin": Admin
   },
-  mounted() {  
-    EventBus.$on('registerUser', u => {
-       let lastID = (this.userList[(this.userList.length) - 1].Id);
-       u.Id = ++lastID;
+  mounted() {
+    EventBus.$on("registerUser", u => {
+      let lastID = this.userList[this.userList.length - 1].Id;
+      u.Id = ++lastID;
       this.userList.push(u);
-  });
-    // EventBus.$on('loginUser', u => {
-    //   if (this.input.username != "" && this.input.password != "") 
-    //   {
-    //     console.log("check if user exists")
-    //     if (this.userExists())
-    //       {
-    //         console.log("if user does exist then check is admin")
-    //         if(this.isAdmin()){
-              
-    //           this.$router.replace({ name: "Admin" });
-    //         } else {
-              
-    //           this.$router.replace({ name: "Homepage" });
-    //         }
-    //       } 
-    //     else 
-    //       {
-    //         console.log("The username and / or password is incorrect");
-    //       }
-    //   } 
-    //     else {
-    //     console.log("A username and password must be present");
-    //   }
-    // })
+    });
   }
 };
 </script>
