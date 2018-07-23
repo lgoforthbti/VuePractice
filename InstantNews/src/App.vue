@@ -10,50 +10,15 @@
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import { EventBus } from "./event-bus.js";
+import axios from 'axios';
 
 export default {
   name: "App",
   data() {
     return {
       authenticated: false,
-      userList: [
-        {
-          Id: 1,
-          Username: "Test1",
-          FName: "John",
-          LName: "Smith",
-          Email: "test1@test.com",
-          Password: "test",
-          isAdmin: false
-        },
-        {
-          Id: 2,
-          Username: "Test2",
-          FName: "Jane",
-          LName: "Doe",
-          Email: "test2@test.com",
-          Password: "test",
-          isAdmin: false
-        },
-        {
-          Id: 3,
-          Username: "Test3",
-          FName: "Shirley",
-          LName: "Temple",
-          Email: "test3@test.com",
-          Password: "test",
-          isAdmin: false
-        },
-        {
-          Id: 4,
-          Username: "admin",
-          FName: "testAdmin",
-          LName: "testAdmin",
-          Email: "testadmin@test.com",
-          Password: "test",
-          isAdmin: true
-        }
-      ]
+      userList: [],
+      errors: []
     };
   },
   methods: {
@@ -64,15 +29,29 @@ export default {
   components: {
     Navbar: Navbar,
     Footer: Footer
-    // "Register": Register,
-    // "Admin": Admin
   },
   mounted() {
     EventBus.$on("registerUser", u => {
       let lastID = this.userList[this.userList.length - 1].Id;
       u.Id = ++lastID;
-      this.userList.push(u);
+      axios.post('https://24997153-7f13-4353-8660-c3e595fa5bb0.mock.pstmn.io/users', {
+        body: u
+      }).then(response => {})
+      // this.userList.push(u);
     });
+  },
+  created() {
+    axios.get('https://24997153-7f13-4353-8660-c3e595fa5bb0.mock.pstmn.io/users')
+    .then(response => {
+      this.userList = response.data
+      console.log(response)
+      console.log( JSON.parse(this.userList) )
+      // console.log(this.userList.length)
+      console.log(this.userList)
+    })
+    .catch(e => {
+      this.errors.push(e)
+    })
   }
 };
 </script>
