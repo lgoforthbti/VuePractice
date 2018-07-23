@@ -15,9 +15,12 @@
 
 <script>
 import { EventBus } from "../event-bus.js"
+import axios from 'axios';
+
 export default {
   name: "Register",
   authenticated: false,
+  props: ['ulist'],
   data() {
     return {
       input: {
@@ -39,6 +42,7 @@ export default {
         this.input.LName != "" &&
         this.input.Email != ""
       ) {
+          let lastID = this.ulist[this.ulist.length - 1].Id;
           let u = {
             Id: 0,
             FName: "",
@@ -48,13 +52,16 @@ export default {
             Password: "",
             isAdmin: false
           }
-          //u.Id = this.users[(users.length) - 1].Id ++;
+          u.Id = ++lastID;
           u.FName = this.input.FName;
           u.LName = this.input.LName;
           u.Email = this.input.Email;
           u.Username = this.input.Username;
           u.Password = this.input.Password;
-        EventBus.$emit('registerUser', u);
+          axios.post('https://24997153-7f13-4353-8660-c3e595fa5bb0.mock.pstmn.io/users', u
+          ).then(response => {
+          console.log(response)
+          })
         this.$emit("authenticated", true);
         this.$router.replace({ name: "Admin" });
       } else {
